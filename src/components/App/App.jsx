@@ -1,6 +1,6 @@
 import css from "./App.module.css";
 import SearchBar from "../SearchBar/SearchBar";
-import GetImages from "../ApiRequest";
+import GetImages from "../apiRequest";
 import { useState, useEffect } from "react";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import toast, { Toaster } from "react-hot-toast";

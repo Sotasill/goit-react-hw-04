@@ -1,17 +1,14 @@
-
-
-import css from './App.module.css'
-import SearchBar from '../SearchBar/SearchBar'
-import GetImages from '../ApiRequest'
-import { useState, useEffect } from 'react'
-import ImageGallery from '../ImageGallery/ImageGallery'
+import css from "./App.module.css";
+import SearchBar from "../SearchBar/SearchBar";
+import GetImages from "../ApiRequest";
+import { useState, useEffect } from "react";
+import ImageGallery from "../ImageGallery/ImageGallery";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../Loader/Loader";
 import ImageModal from "../ImageModal/ImageModal";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { BiSolidNoEntry } from "react-icons/bi";
-
 
 function App() {
   const [images, setImages] = useState([]);
@@ -24,6 +21,9 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImage, setModalImage] = useState("");
   const [modalAlt, setModalAlt] = useState("");
+  const [modalAuthor, setModalAuthor] = useState(""); 
+  const [modalDescription, setModalDescription] = useState(""); 
+  const [modalRating, setModalRating] = useState(""); 
 
   useEffect(() => {
     async function fetchImagesHandler() {
@@ -32,24 +32,25 @@ function App() {
         setLoading(true);
         const data = await GetImages(query, page);
         const results = data.results;
+
         if (page === 1) {
           if (results.length === 0) {
-            toast("There is no results, try another search", {
+            toast("There are no results, try another search", {
               icon: <BiSolidNoEntry />,
               position: "top-right",
               duration: 5000,
               style: {
                 background: "red",
-                color: "#fff", 
-                fontSize: "20px", 
-                borderRadius: "8px", 
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", 
+                color: "#fff",
+                fontSize: "20px",
+                borderRadius: "8px",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               },
             });
             return;
           }
-          toast.success(`Totaly ${data.total} has been found`, {
-            position: "top-rigth",
+          toast.success(`A total of ${data.total} results found`, {
+            position: "top-right",
             duration: 5000,
             style: {
               background: "green",
@@ -60,6 +61,7 @@ function App() {
             },
           });
         }
+
         setIsLastPage(page >= data.total_pages);
         setImages((prevData) => [...prevData, ...results]);
       } catch (error) {
@@ -87,8 +89,8 @@ function App() {
 
   useEffect(() => {
     if (isLastPage) {
-      toast.success("You have come to the bottom!", {
-        position: "",
+      toast.success("You have reached the end of the results", {
+        position: "top-right",
         duration: 5000,
         style: {
           background: "green",
@@ -111,10 +113,14 @@ function App() {
     setPage((prevData) => prevData + 1);
   }
 
-  function openModal(imageUrl, alt) {
+  
+  function openModal(imageUrl, alt, author, description, rating) {
     setModalIsOpen(true);
     setModalImage(imageUrl);
     setModalAlt(alt);
+    setModalAuthor(author); 
+    setModalDescription(description); 
+    setModalRating(rating); 
   }
 
   function closeModal() {
@@ -141,9 +147,12 @@ function App() {
         closeModal={closeModal}
         modalImage={modalImage}
         modalAlt={modalAlt}
+        modalAuthor={modalAuthor} 
+        modalDescription={modalDescription} 
+        modalRating={modalRating} 
       />
     </div>
   );
 }
 
-export default App
+export default App;

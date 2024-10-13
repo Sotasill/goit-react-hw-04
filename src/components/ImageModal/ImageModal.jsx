@@ -1,14 +1,14 @@
 import Modal from "react-modal";
-
 import css from "./ImageModal.module.css";
-
-Modal.setAppElement("#root");
 
 export default function ImageModal({
   modalIsOpen,
   closeModal,
   modalImage,
   modalAlt,
+  modalAuthor, 
+  modalDescription, 
+  modalRating, 
 }) {
   return (
     <Modal
@@ -16,14 +16,19 @@ export default function ImageModal({
       onRequestClose={closeModal}
       className={css.modal}
       overlayClassName={{
-        base: css.overlay,
-        afterOpen: css.overlayOpen,
-        beforeClose: css.overlayClose,
+        base: css.backdrop,
+        afterOpen: css.backdropOpen,
+        beforeClose: css.backdropClose,
       }}
       bodyOpenClassName={css.body}
       closeTimeoutMS={500}
     >
-      <img src={modalImage} alt={modalAlt} className={css.image} />;
+      <img src={modalImage} alt={modalAlt} className={css.image} />
+      <div className={css.info}>
+        <h3>Author: {modalAuthor}</h3>
+        <p>Description: {modalDescription}</p>
+        <p>Rating: {modalRating}</p>
+      </div>
     </Modal>
   );
 }

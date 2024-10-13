@@ -5,7 +5,7 @@
   object-fit: cover;
 }
 
-.overlay {
+.backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -16,11 +16,11 @@
   transition: opacity 500ms ease-in-out;
 }
 
-.overlayOpen {
+.backdropOpen {
   opacity: 1;
 }
 
-.overlayClose {
+.backdropClose {
   opacity: 0;
 }
 
@@ -36,4 +36,25 @@
   border-radius: 4px;
   overflow: hidden;
   outline: none;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  color: white;
+  flex-wrap: nowrap;
+  padding: 20px;
+  background-color: black;
+}
+
+.info h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.info p {
+  font-size: 16px;
+  color: white;
 }

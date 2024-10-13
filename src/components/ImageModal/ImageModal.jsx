@@ -6,9 +6,10 @@ export default function ImageModal({
   closeModal,
   modalImage,
   modalAlt,
-  modalAuthor, 
-  modalDescription, 
-  modalRating, 
+  modalAuthor,
+  modalDescription,
+  modalRating,
+  
 }) {
   return (
     <Modal
@@ -20,15 +21,20 @@ export default function ImageModal({
         afterOpen: css.backdropOpen,
         beforeClose: css.backdropClose,
       }}
-      bodyOpenClassName={css.body}
-      closeTimeoutMS={500}
+      closeTimeoutMS={600}
     >
       <img src={modalImage} alt={modalAlt} className={css.image} />
       <div className={css.info}>
         <h3>Author: {modalAuthor}</h3>
         <p>Description: {modalDescription}</p>
         <p>Rating: {modalRating}</p>
+        <button className={css.closeButton} onClick={closeModal}>
+          Dissmiss
+        </button>
+       
       </div>
     </Modal>
   );
 }
+
+

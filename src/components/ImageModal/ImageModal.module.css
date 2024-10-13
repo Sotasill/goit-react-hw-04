@@ -1,0 +1,27 @@
+.modal {
+
+     position: absolute;
+  inset: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 4px;
+  overflow: hidden;
+  outline: none;
+}
+
+.backdrop {
+     position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+
+.backdropOpen {opacity: 1;}
+
+.backdropClose {opacity: 0;
+
+}

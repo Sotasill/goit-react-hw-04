@@ -137,7 +137,7 @@ function App() {
       )}
       {loading && <Loader />}
       <ImageModal
-        isOpen={modalIsOpen}
+        modalIsOpen={modalIsOpen}
         closeModal={closeModal}
         modalImage={modalImage}
         modalAlt={modalAlt}

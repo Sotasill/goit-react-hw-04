@@ -1,6 +1,6 @@
-import css from './ImageModal.module.css'
-
 import Modal from "react-modal";
+
+import css from "./ImageModal.module.css";
 
 Modal.setAppElement("#root");
 
@@ -16,9 +16,9 @@ export default function ImageModal({
       onRequestClose={closeModal}
       className={css.modal}
       overlayClassName={{
-        base: css.backdrop,
-        afterOpen: css.backdropOpen,
-        beforeClose: css.backdropClose,
+        base: css.overlay,
+        afterOpen: css.overlayOpen,
+        beforeClose: css.overlayClose,
       }}
       bodyOpenClassName={css.body}
       closeTimeoutMS={500}

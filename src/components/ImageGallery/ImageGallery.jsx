@@ -20,3 +20,7 @@ const ImageGallery = ({ images, onModalOpen }) => {
 };
 
 export default ImageGallery;
+
+
+
+

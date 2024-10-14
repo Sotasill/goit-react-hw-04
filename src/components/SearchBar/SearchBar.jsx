@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
 
-export default function SearchBar({ reset, setQuery }) {
+export default function SearchBar({ reset, setQuery, inputRef }) {
   function submitHandler(e) {
     e.preventDefault();
     const query = e.target.elements.input.value.trim();
@@ -25,9 +25,9 @@ export default function SearchBar({ reset, setQuery }) {
           autoFocus
           placeholder="Enter to Search Images"
           className={css.input}
+          ref={inputRef}
         />
         <button type="submit" className={css.button}>
-         
           Search
         </button>
       </form>

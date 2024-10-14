@@ -1,7 +1,7 @@
 import css from "./App.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import GetImages from "../apiRequest";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../Loader/Loader";
@@ -24,6 +24,8 @@ function App() {
   const [modalAuthor, setModalAuthor] = useState(""); 
   const [modalDescription, setModalDescription] = useState(""); 
   const [modalRating, setModalRating] = useState(""); 
+
+  const inputRef = useRef(null); 
 
   useEffect(() => {
     async function fetchImagesHandler() {
@@ -103,6 +105,13 @@ function App() {
     }
   }, [isLastPage]);
 
+  useEffect(() => {
+    
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   function onSubmitReset() {
     setPage(1);
     setQuery("");
@@ -130,7 +139,11 @@ function App() {
   return (
     <div className={css.container}>
       <Toaster />
-      <SearchBar reset={onSubmitReset} setQuery={setQuery} />
+      <SearchBar
+        reset={onSubmitReset}
+        setQuery={setQuery}
+        inputRef={inputRef}
+      />
       {error ? (
         <ErrorMessage errorMessage={errorMessage} />
       ) : (
@@ -147,9 +160,9 @@ function App() {
         closeModal={closeModal}
         modalImage={modalImage}
         modalAlt={modalAlt}
-        modalAuthor={modalAuthor} 
-        modalDescription={modalDescription} 
-        modalRating={modalRating} 
+        modalAuthor={modalAuthor}
+        modalDescription={modalDescription}
+        modalRating={modalRating}
       />
     </div>
   );
